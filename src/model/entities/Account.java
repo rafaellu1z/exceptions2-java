@@ -44,17 +44,20 @@ public class Account {
 	}
 	
 	public void deposit(double amount) {
-		this.balance += amount;
+		balance += amount;
 	}
 	
 	public void withdraw(double amount) {
-		if (amount > this.balance) {
-			throw new AccountException("Not enough balance");
-		} 
-		if (amount > this.withdrawLimit) {
+		validateWithdraw(amount);
+		balance -= amount;
+	}
+	public void validateWithdraw(double amount) {
+		if (amount > getWithdrawLimit()) {
 			throw new AccountException("The amount exceeds withdraw limit");
 		}
-		this.balance -= amount;
+		if (amount > getBalance()) {
+			throw new AccountException("Not enough balance");
+		}
 	}
 	
 }
