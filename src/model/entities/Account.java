@@ -6,17 +6,17 @@ public class Account {
 	
 	private Integer number;
 	private String holder;
-	private Double balance;
+	private Double balance = 0.0;
 	private Double withdrawLimit;
 	
 	public Account() {
 	}
 	
-	public Account(Integer number, String holder, Double initialDeposit, Double withdrawLimit) {
+	public Account(Integer number, String holder, Double initialBalance, Double withdrawLimit) {
 		this.number = number;
 		this.holder = holder;
 		this.withdrawLimit = withdrawLimit;
-		deposit(initialDeposit);
+		deposit(initialBalance);
 	}
 
 	public Integer getNumber() {
@@ -44,17 +44,17 @@ public class Account {
 	}
 	
 	public void deposit(double amount) {
-		balance += amount;
+		this.balance += amount;
 	}
 	
 	public void withdraw(double amount) {
-		if (amount > balance) {
+		if (amount > this.balance) {
 			throw new AccountException("Not enough balance");
-		}
-		if (amount > withdrawLimit) {
+		} 
+		if (amount > this.withdrawLimit) {
 			throw new AccountException("The amount exceeds withdraw limit");
 		}
-		balance -= amount;
+		this.balance -= amount;
 	}
 	
 }

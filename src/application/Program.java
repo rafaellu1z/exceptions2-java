@@ -12,6 +12,7 @@ public class Program {
 		
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
+		
 		try {
 			System.out.println("Enter account data");
 			System.out.print("Number: ");
@@ -20,22 +21,22 @@ public class Program {
 			sc.nextLine();
 			String holder = sc.nextLine();
 			System.out.print("Initial balance: ");
-			double initialBalance = sc.nextDouble();
+			Double initialBalance = sc.nextDouble();
 			System.out.print("Withdraw limit: ");
-			double withdrawLimit = sc.nextDouble();
+			Double withdrawLimit = sc.nextDouble();
 			
-			Account ac = new Account(number, holder, initialBalance, withdrawLimit);
+			Account acc = new Account(number, holder, initialBalance, withdrawLimit);
 			
 			System.out.println();
 			System.out.print("Enter amount for withdraw: ");
 			double amount = sc.nextDouble();
-			ac.withdraw(amount);
-			System.out.println("New balance: " + String.format("%.2f", ac.getBalance()));
+			
+			acc.withdraw(amount);
+			System.out.printf("New balance: %.2f%n", acc.getBalance());
 		}
 		catch (AccountException e) {
-			System.out.println("WithDrawn error: " + e.getMessage());
+			System.out.println("Withdraw error: " + e.getMessage());
 		}
-		
 				
 		sc.close();
 
